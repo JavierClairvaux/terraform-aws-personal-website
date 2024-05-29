@@ -1,0 +1,33 @@
+---
+- name: Install packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "nginx"
+    - "ansible"
+    - "certbot"
+    - "rsync"
+
+- name: Start nginx service
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Create personal website dir
+  file:
+    path: "{{ nginx_root_dir }}"
+    state: directory 
+
+- name: Copy website files
+  ansible.posix.synchronize:
+    src: "../../../website"
+    dest: "{{ nginx_root_dir }}"
+
+- name: nginx.conf template
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+  notify:
+    - reload nginx
