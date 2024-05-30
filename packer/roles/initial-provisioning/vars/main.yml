@@ -1,1 +1,2 @@
 nginx_root_dir: "/var/www/html/website"
+rsync_dir: "/var/www/html"

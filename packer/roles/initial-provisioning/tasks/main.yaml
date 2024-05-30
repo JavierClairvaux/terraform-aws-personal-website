@@ -23,7 +23,7 @@
 - name: Copy website files
   ansible.posix.synchronize:
     src: "../../../website"
-    dest: "{{ nginx_root_dir }}"
+    dest: "{{ rsync_dir }}"
 
 - name: nginx.conf template
   template:
