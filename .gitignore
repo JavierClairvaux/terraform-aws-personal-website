@@ -1,7 +1,8 @@
 *.txt
 *.tfvars
-.terraform/*
+*/.terraform/*
 terraform.tfstate
+terraform.tfstate.backup
 .terraform.lock.hcl
 packer/*.pkvars.hcl
 packer/*.ini
