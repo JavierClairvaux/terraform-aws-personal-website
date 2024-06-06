@@ -18,3 +18,7 @@ output "zone-id" {
   value       = aws_route53_zone.main.zone_id
 }
 
+output "domain" {
+  description = "domain's name"
+  value = var.domain
+}
