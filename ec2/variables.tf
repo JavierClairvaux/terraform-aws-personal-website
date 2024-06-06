@@ -15,3 +15,15 @@ variable "personal_ip" {
   type        = string
   nullable    = false
 }
+
+variable "key_name" {
+  description = "ssh key name"
+  type        = string
+  nullable    = false
+}
+
+variable "bucket" {
+  description = "State bucket"
+  type        = string
+  nullable    = false
+}
