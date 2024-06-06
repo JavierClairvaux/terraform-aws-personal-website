@@ -1,26 +1,29 @@
-# data "aws_ami" "aml" {
-#   most_recent = true
+data "aws_ami" "aml" {
+  most_recent = true
 
-#   filter {
-#     name   = "name"
-#     values = ["al2023-ami-2023.4.*"]
-#   }
+  filter {
+    name   = "name"
+    values = ["${var.user}-personal-website-*"]
+  }
 
-#   filter {
-#     name   = "virtualization-type"
-#     values = ["hvm"]
-#   }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
 
-#   owners = ["137112412989"] 
-# }
+  owners = ["self"]
+}
 
-# resource "aws_instance" "web" {
-#   ami           = data.aws_ami.aml.id
-#   instance_type = "t2.micro"
-#   key_name = "wsl"
+resource "aws_instance" "web" {
+  ami             = data.aws_ami.aml.id
+  instance_type   = "t2.nano"
+  key_name        = var.key_name
+  subnet_id       = module.vpc.public_subnets[0]
+  security_groups = [module.security-group.security_group_id]
 
 
-#   tags = {
-#     Owner = "${var.user}"
-#   }
-# }
+  tags = {
+    Owner = "${var.user}"
+  }
+
+}
