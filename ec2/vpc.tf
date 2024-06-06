@@ -4,10 +4,10 @@ module "vpc" {
   name = "${var.user}-vpc"
   cidr = "10.0.0.0/16"
 
-  azs                = ["us-west-2a", ]
-  private_subnets    = ["10.0.1.0/24", ]
-  public_subnets     = ["10.0.101.0/24", ]
-  enable_nat_gateway = true
+  azs                     = ["us-west-2a", ]
+  private_subnets         = ["10.0.1.0/24", ]
+  public_subnets          = ["10.0.101.0/24", ]
+  enable_nat_gateway      = true
   map_public_ip_on_launch = true
 
   tags = {
@@ -20,9 +20,9 @@ module "security-group" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "5.1.2"
 
-  name = "${var.user}-website"
+  name        = "${var.user}-website"
   description = "${var.user} personal website security group"
-  vpc_id = module.vpc.vpc_id
+  vpc_id      = module.vpc.vpc_id
   ingress_with_cidr_blocks = [
     {
       rule        = "ssh-tcp"
@@ -34,6 +34,15 @@ module "security-group" {
     },
     {
       rule        = "http-80-tcp"
+      cidr_blocks = "0.0.0.0/0"
+    },
+  ]
+  egress_with_cidr_blocks = [
+    {
+      from_port   = 0
+      to_port     = 0
+      protocol    = -1
+      description = "Egress rule"
       cidr_blocks = "0.0.0.0/0"
     },
   ]
