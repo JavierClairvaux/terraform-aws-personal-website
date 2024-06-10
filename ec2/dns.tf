@@ -16,7 +16,7 @@ resource "aws_eip_association" "eip-assoc" {
 
 resource "aws_route53_record" "website-domain" {
   zone_id = data.terraform_remote_state.dns.outputs.zone-id
-  name    = "test.${data.terraform_remote_state.dns.outputs.domain}"
+  name    = "${var.subdomain}.${data.terraform_remote_state.dns.outputs.domain}"
   type    = "A"
   ttl     = 300
   records = [aws_eip.personal-eip.public_ip]
