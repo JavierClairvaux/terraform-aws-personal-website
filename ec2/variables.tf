@@ -14,6 +14,7 @@ variable "personal_ip" {
   description = "users ip"
   type        = string
   nullable    = false
+  sensitive = true
 }
 
 variable "key_name" {
@@ -24,6 +25,18 @@ variable "key_name" {
 
 variable "bucket" {
   description = "State bucket"
+  type        = string
+  nullable    = false
+}
+
+variable "subdomain" {
+  description = "Personal website subdomain"
+  type        = string
+  nullable    = false
+}
+
+variable "email" {
+  description = "User's email"
   type        = string
   nullable    = false
 }
