@@ -1,0 +1,19 @@
+- name: write hostname using jinja2
+  ansible.builtin.template:
+    src: templates/nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+
+- name: Generate the SSL certificate
+  ansible.builtin.command: "/usr/bin/certbot --nginx -d {{ subdomain }}.{{ domain }} --non-interactive --agree-tos --email {{ email }}"
+
+- name: Set up automatic renewal
+  ansible.builtin.cron:
+    name: "Certbot automatic renewal"
+    job: "/usr/bin/certbot renew --quiet"
+    minute: "11"
+    hour: "11"
+
+- name: reload nginx
+  ansible.builtin.service:
+    name: nginx
+    state: reloaded
