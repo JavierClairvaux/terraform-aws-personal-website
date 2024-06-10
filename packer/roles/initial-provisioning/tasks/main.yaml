@@ -8,6 +8,9 @@
     - "ansible"
     - "certbot"
     - "rsync"
+    - "python3-certbot-nginx"
+    - "cronie"
+
 
 - name: Start nginx service
   service:
@@ -31,3 +34,8 @@
     dest: /etc/nginx/nginx.conf
   notify:
     - reload nginx
+
+- name: Synchronization of certbot role
+  ansible.posix.synchronize:
+    src: files/certbot
+    dest: /etc/ansible/roles
