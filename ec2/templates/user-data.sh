@@ -16,6 +16,10 @@ echo """
        domain: "${domain}"
        subdomain: "${subdomain}"
        email: "${email}"
+    - role: shutdown-cleanup
+      vars:
+       domain: "${domain}"
+       subdomain: "${subdomain}"
 
 """ > playbook.yml
 
