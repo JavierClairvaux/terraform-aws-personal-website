@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "Deleting {{ subdomain }}.{{ domain }} certificate"
+
+certbot -n delete --cert-name {{ subdomain }}.{{ domain }}

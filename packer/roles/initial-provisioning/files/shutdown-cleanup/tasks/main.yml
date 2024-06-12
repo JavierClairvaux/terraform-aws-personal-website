@@ -1,0 +1,29 @@
+- name: Install the certbot-cleanup.sh script
+  template:
+     src: certbot-cleanup.sh.j2
+     dest: /usr/local/sbin/certbot-cleanup.sh
+     owner: root
+     group: root
+     mode: 0755
+
+- name: Install a service to run certbot-cleanup.sh at shutdown
+  copy:
+      src: certbot-cleanup.service
+      dest: /lib/systemd/system/certbot-cleanup.service
+      owner: root
+      group: root
+      mode: 0644
+  register: certbot_cleanup_service
+
+- name: Restart certbot-cleanup service if the service file changed
+  systemd:
+    name: certbot-cleanup
+    daemon_reload: True
+    state: restarted
+  when: certbot_cleanup_service.changed
+
+- name: Enable certbot-cleanup service so it starts on boot
+  systemd:
+    name: certbot-cleanup
+    enabled: True
+    state: started

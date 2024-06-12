@@ -1,0 +1,13 @@
+[Unit]
+Description=Run cleanup at shutdown
+After=syslog.service network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStop=/usr/local/sbin/certbot-cleanup.sh
+Restart=on-failure
+RestartSec=1s
+
+[Install]
+WantedBy=multi-user.target
