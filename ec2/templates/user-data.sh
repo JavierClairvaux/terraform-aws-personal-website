@@ -3,6 +3,7 @@
 while [ `curl http://checkip.amazonaws.com` != `dig +short test.cabreragon.xyz` ]
 do
 	echo "Not ready yet..."
+  sleep 2s
 done
 
 echo """
