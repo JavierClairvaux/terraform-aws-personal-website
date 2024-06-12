@@ -39,3 +39,8 @@
   ansible.posix.synchronize:
     src: files/certbot
     dest: /etc/ansible/roles
+
+- name: Synchronization of shutdown-cleanup role
+  ansible.posix.synchronize:
+    src: files/shutdown-cleanup
+    dest: /etc/ansible/roles
