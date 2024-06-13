@@ -40,3 +40,9 @@ variable "email" {
   type        = string
   nullable    = false
 }
+
+variable "tls_enabled" {
+  description = "Weather or not to enable TLS"
+  type = bool
+  default = false
+}

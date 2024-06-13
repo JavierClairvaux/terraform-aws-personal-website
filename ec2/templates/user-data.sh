@@ -1,5 +1,14 @@
 #!/bin/sh
 
+TLS_ENABLED=${tls_enabled}
+
+if [ "$TLS_ENABLED" = false ] ;
+then
+  echo "TLS isn't enabled, exiting..."
+  exit 0
+fi
+
+
 while [ `curl http://checkip.amazonaws.com` != `dig +short test.cabreragon.xyz` ]
 do
 	echo "Not ready yet..."

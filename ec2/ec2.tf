@@ -21,6 +21,7 @@ data "template_file" "user-data" {
       domain = data.terraform_remote_state.dns.outputs.domain
       subdomain = var.subdomain
       email = var.email
+      tls_enabled = var.tls_enabled
     }
 }
 
