@@ -14,7 +14,7 @@ variable "personal_ip" {
   description = "users ip"
   type        = string
   nullable    = false
-  sensitive = true
+  sensitive   = true
 }
 
 variable "key_name" {
@@ -43,6 +43,6 @@ variable "email" {
 
 variable "tls_enabled" {
   description = "Weather or not to enable TLS"
-  type = bool
-  default = false
+  type        = bool
+  default     = false
 }

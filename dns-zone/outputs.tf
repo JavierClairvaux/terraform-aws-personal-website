@@ -20,5 +20,5 @@ output "zone-id" {
 
 output "domain" {
   description = "domain's name"
-  value = var.domain
+  value       = var.domain
 }
