@@ -9,7 +9,7 @@ then
 fi
 
 
-while [ `curl http://checkip.amazonaws.com` != `dig +short test.cabreragon.xyz` ]
+while [ `curl http://checkip.amazonaws.com` != `dig +short ${subdomain}.${domain}` ]
 do
 	echo "Not ready yet..."
   sleep 2s
