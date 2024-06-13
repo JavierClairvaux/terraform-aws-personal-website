@@ -34,4 +34,3 @@ echo """
 """ > playbook.yml
 
 ansible-playbook playbook.yml
-
