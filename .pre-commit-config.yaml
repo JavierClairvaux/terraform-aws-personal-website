@@ -4,3 +4,19 @@ repos:
     hooks:
     -   id: check-yaml
     -   id: end-of-file-fixer
+repos:
+- repo: https://github.com/antonbabenko/pre-commit-terraform
+  rev: v1.91.0 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
+  hooks:
+    - id: terraform_validate
+      exclude: >
+        (?x)^(
+          packer/|
+          website/
+        )$
+    - id: terraform_fmt
+      exclude: >
+        (?x)^(
+          packer/|
+          website/
+        )$
