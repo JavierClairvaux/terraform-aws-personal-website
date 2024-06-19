@@ -3,6 +3,7 @@ repos:
     rev: v2.3.0
     hooks:
     -   id: check-yaml
+        include: ^packer/roles/
     -   id: end-of-file-fixer
 repos:
 - repo: https://github.com/antonbabenko/pre-commit-terraform
